@@ -30,7 +30,7 @@ if __name__=='__main__':
         lines = file.readlines()
 
         with open('trainingset.csv', 'a+', newline='') as csvfile:
-            csvWriter = csv.DictWriter(csvfile, fieldnames=['Title','Original Title','Synopsis','Genre','Release Date'], delimiter=';')
+            csvWriter = csv.DictWriter(csvfile, fieldnames=['Title','OriginalTitle','Synopsis','Genre','ReleaseDate'], delimiter=';')
             csvWriter.writeheader()
 
             for movie in lines:
@@ -43,11 +43,11 @@ if __name__=='__main__':
                     strGenres = strGenres[:-1]
 
                     row = {
-                        'Title': item['title'],
-                        'Original Title': item['original_title'],
-                        'Synopsis': item['overview'],
-                        'Genre': strGenres,
-                        'Release Date': item['release_date']
+                        'Title': str(item['title']).replace(";","."),
+                        'OriginalTitle': str(item['original_title']).replace(";","."),
+                        'Synopsis': str(item['overview']).replace(";","."),
+                        'Genre': str(strGenres),
+                        'ReleaseDate': str(item['release_date'])
                     }
                     csvWriter.writerow(row)
     print(" OK!")
