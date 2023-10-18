@@ -44,10 +44,19 @@ def predict_genre(user_title, user_synopsis):
     predicted_genre = naive_bayes.predict(user_input_vector)[0]
     return predicted_genre
 
-# User input
-user_title = input("Enter the movie title: ")
-user_synopsis = input("Enter the movie synopsis: ")
+user_title = ""
+with open('movie_list.csv', 'a+') as f:
+    while user_title != "SAIR":        
+        # User input
+        user_title = input("Enter the movie title: ")
+        user_synopsis = input("Enter the movie synopsis: ")
 
-# Predict the genre
-predicted_genre = predict_genre(user_title, user_synopsis)
-print(f"Predicted Genre: {predicted_genre}")
+        if user_title != "SAIR":
+            f.write(user_title + '\n')
+            # Predict the genre
+            predicted_genre = predict_genre(user_title, user_synopsis)
+            print(f"Predicted Genre: {predicted_genre}")
+
+    f.close()
+with open('main.py') as sp:
+    exec(sp.read())

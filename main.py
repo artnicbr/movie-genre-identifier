@@ -29,7 +29,7 @@ if __name__=='__main__':
     with open(fileName) as file:
         lines = file.readlines()
 
-        with open('trainingset.csv', 'a+', newline='') as csvfile:
+        with open('trainingset.csv', 'w', newline='') as csvfile:
             csvWriter = csv.DictWriter(csvfile, fieldnames=['Title','OriginalTitle','Synopsis','Genre','ReleaseDate'], delimiter=';')
             csvWriter.writeheader()
 
