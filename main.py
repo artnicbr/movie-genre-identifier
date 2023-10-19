@@ -42,12 +42,14 @@ if __name__=='__main__':
                         strGenres = strGenres + f['name'] + ','
                     strGenres = strGenres[:-1]
 
-                    row = {
-                        'Title': str(item['title']).replace(";","."),
-                        'OriginalTitle': str(item['original_title']).replace(";","."),
-                        'Synopsis': str(item['overview']).replace(";","."),
-                        'Genre': str(strGenres),
-                        'ReleaseDate': str(item['release_date'])
-                    }
-                    csvWriter.writerow(row)
+                    for g in strGenres.split(","): 
+                        row = {
+                            'Title': str(item['title']).replace(";","."),
+                            'OriginalTitle': str(item['original_title']).replace(";","."),
+                            'Synopsis': str(item['overview']).replace(";","."),
+                            'Genre': str(g),
+                            'ReleaseDate': str(item['release_date'])
+                        }
+
+                        csvWriter.writerow(row)
     print(" OK!")
